@@ -1,5 +1,5 @@
-var CACHE_NAME = "my-site-cache-v1";
-var urlsToCache = ["./"];
+const CACHE_NAME = "my-site-cache-v1";
+const urlsToCache = ["./"];
 
 self.addEventListener("install", function(event) {
   event.waitUntil(
@@ -22,7 +22,7 @@ self.addEventListener("fetch", function(event) {
           return response;
         }
 
-        var responseToCache = response.clone();
+        const responseToCache = response.clone();
 
         caches.open(CACHE_NAME).then(function(cache) {
           cache.put(event.request, responseToCache);
