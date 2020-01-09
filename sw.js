@@ -1,5 +1,5 @@
 const CACHE_NAME = "my-site-cache-v1";
-const urlsToCache = ["./"];
+const urlsToCache = ["./", "https://placekitten.com/200/200"];
 
 self.addEventListener("install", function(event) {
   event.waitUntil(
