@@ -20,7 +20,19 @@ self.addEventListener("install", function(event) {
     })
   );
 });
-
+self.addEventListener("activate", e => {
+  e.waitUntil(
+    caches.keys().then(CACHE_NAME => {
+      return Promise.all(
+        CACHE_NAME.map(cache => {
+          if (cache !== CACHE_NAME) {
+            return caches.delete(cache);
+          }
+        })
+      );
+    })
+  );
+});
 self.addEventListener("fetch", function(event) {
   event.respondWith(
     caches.match(event.request).then(function(response) {
